@@ -1,7 +1,7 @@
 import css from './ContactList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { deleteContact } from 'redux/contactsSlice';
+import { deleteContact } from 'redux/operations';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -10,11 +10,12 @@ export const ContactList = () => {
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
+
   return (
     <ul className={css.list}>
-      {filteredContacts.map(({ name, number, id }) => (
+      {filteredContacts.map(({ name, phone, id }) => (
         <li key={id} className={css.item}>
-          {name}: {number}
+          {name}: {phone}
           <button
             className={css.btn}
             type="button"
